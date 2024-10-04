@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddTaskActivity">
+
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Task Title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"/>
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Task Description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTitle"
+        android:layout_margin="16dp"/>
+
+    <TextView
+        android:id="@+id/tvDeadline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Select Deadline"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:clickable="true"
+        app:layout_constraintTop_toBottomOf="@id/editTextDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/buttonSaveTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Task"
+        app:layout_constraintTop_toBottomOf="@id/tvDeadline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
