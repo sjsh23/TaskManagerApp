@@ -164,12 +164,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
+            // Handling task creation
             String id = data.getStringExtra("id");
             String title = data.getStringExtra("title");
             String description = data.getStringExtra("description");
             String deadline = data.getStringExtra("deadline");
+            String category = data.getStringExtra("category"); // Get category from intent
 
-            Task newTask = new Task(id, title, description, deadline);
+            Task newTask = new Task(id, title, description, deadline, category);
             taskList.add(newTask);
             filteredTaskList.add(newTask); // Also add to filtered list
             taskAdapter.notifyDataSetChanged();
@@ -181,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
             String title = data.getStringExtra("title");
             String description = data.getStringExtra("description");
             String deadline = data.getStringExtra("deadline");
+            String category = data.getStringExtra("category"); // Get updated category
 
             // Find the task by ID and update it
             for (Task task : taskList) {
@@ -188,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
                     task.setTitle(title);
                     task.setDescription(description);
                     task.setDeadline(deadline);
+                    task.setCategory(category); // Update the category
                     cancelTaskNotification(task);
                     setTaskNotification(task);
                     break;

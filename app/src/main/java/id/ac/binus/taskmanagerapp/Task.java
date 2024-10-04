@@ -9,13 +9,15 @@ public class Task {
     private String title;
     private String description;
     private String deadline;
+    private String category;
 
     // Constructor
-    public Task(String id, String title, String description, String deadline) {
+    public Task(String id, String title, String description, String deadline, String category) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.deadline = deadline;
+        this.category = category;
     }
     public Date getDeadlineDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -25,6 +27,13 @@ public class Task {
             e.printStackTrace();
             return null;
         }
+    }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     // Getters and Setters

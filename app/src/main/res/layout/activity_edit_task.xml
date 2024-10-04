@@ -5,32 +5,50 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Task Title -->
     <EditText
         android:id="@+id/editTextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Task Title" />
+        android:hint="Task Title"
+        android:textSize="18sp"
+        android:padding="10dp" />
 
+    <!-- Task Description -->
     <EditText
         android:id="@+id/editTextDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Task Description" />
+        android:hint="Task Description"
+        android:textSize="18sp"
+        android:padding="10dp" />
 
+    <!-- Task Deadline (TextView) -->
     <TextView
         android:id="@+id/tvDeadline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Select Deadline"
-        android:hint="Task Deadline"
-        android:padding="10dp"
         android:textSize="18sp"
+        android:padding="10dp"
         android:background="?android:attr/selectableItemBackground"
-        android:gravity="center" />
+        android:gravity="center"
+        android:hint="Task Deadline" />
 
+    <!-- Task Category Spinner -->
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" />
+
+    <!-- Update Task Button -->
     <Button
         android:id="@+id/buttonUpdateTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update Task" />
+        android:text="Update Task"
+        android:textSize="18sp"
+        android:padding="12dp" />
+
 </LinearLayout>

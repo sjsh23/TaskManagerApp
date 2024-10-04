@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp" />
 
     <EditText
         android:id="@+id/editTextDescription"
@@ -24,7 +24,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextTitle"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp" />
+
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/editTextDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
 
     <TextView
         android:id="@+id/tvDeadline"
@@ -36,12 +45,12 @@
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center"
         android:clickable="true"
-        app:layout_constraintTop_toBottomOf="@id/editTextDescription"
+        app:layout_constraintTop_toBottomOf="@id/spinnerCategory"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/buttonSaveTask"
@@ -51,6 +60,6 @@
         app:layout_constraintTop_toBottomOf="@id/tvDeadline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

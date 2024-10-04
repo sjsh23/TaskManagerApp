@@ -3,9 +3,11 @@ package id.ac.binus.taskmanagerapp;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Calendar;
 import java.util.UUID;
@@ -13,7 +15,8 @@ import java.util.UUID;
 public class AddTaskActivity extends AppCompatActivity {
 
     private EditText editTextTitle, editTextDescription;
-    private TextView tvDeadline; // Change EditText to TextView for deadline
+    private TextView tvDeadline;
+    private Spinner spinnerCategory;
     private String selectedDeadline = ""; // Store selected deadline
 
     @Override
@@ -24,7 +27,13 @@ public class AddTaskActivity extends AppCompatActivity {
         editTextTitle = findViewById(R.id.editTextTitle);
         editTextDescription = findViewById(R.id.editTextDescription);
         tvDeadline = findViewById(R.id.tvDeadline); // Initialize TextView for deadline
+        spinnerCategory = findViewById(R.id.spinnerCategory); // Initialize Spinner for category
         Button buttonSaveTask = findViewById(R.id.buttonSaveTask);
+
+        // Set up Spinner with categories
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.task_categories, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategory.setAdapter(adapter);
 
         // Set an OnClickListener to open the DatePickerDialog
         tvDeadline.setOnClickListener(v -> showDatePickerDialog());
@@ -33,6 +42,7 @@ public class AddTaskActivity extends AppCompatActivity {
             String id = UUID.randomUUID().toString();
             String title = editTextTitle.getText().toString();
             String description = editTextDescription.getText().toString();
+            String category = spinnerCategory.getSelectedItem().toString(); // Get selected category
 
             // Pass task data back to MainActivity
             Intent resultIntent = new Intent();
@@ -40,6 +50,7 @@ public class AddTaskActivity extends AppCompatActivity {
             resultIntent.putExtra("title", title);
             resultIntent.putExtra("description", description);
             resultIntent.putExtra("deadline", selectedDeadline); // Use selected deadline
+            resultIntent.putExtra("category", category); // Pass the selected category
             setResult(RESULT_OK, resultIntent);
             finish();
         });

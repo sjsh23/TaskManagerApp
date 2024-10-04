@@ -3,8 +3,10 @@ package id.ac.binus.taskmanagerapp;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ public class EditTaskActivity extends AppCompatActivity {
     private EditText editTextTitle;
     private EditText editTextDescription;
     private TextView tvDeadline; // Change EditText to TextView for deadline
+    private Spinner spinnerCategory; // Spinner for task category
     private Button buttonUpdateTask;
     private String selectedDeadline = ""; // Store selected deadline
 
@@ -28,6 +31,13 @@ public class EditTaskActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.editTextDescription);
         tvDeadline = findViewById(R.id.tvDeadline); // Initialize TextView for deadline
         buttonUpdateTask = findViewById(R.id.buttonUpdateTask);
+        spinnerCategory = findViewById(R.id.spinnerCategory); // Initialize Spinner for category
+
+        // Populate the spinner with category options
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.task_categories, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategory.setAdapter(adapter);
 
         // Get the task details from the intent
         Intent intent = getIntent();
@@ -35,11 +45,18 @@ public class EditTaskActivity extends AppCompatActivity {
         String title = intent.getStringExtra("title");
         String description = intent.getStringExtra("description");
         selectedDeadline = intent.getStringExtra("deadline");
+        String selectedCategory = intent.getStringExtra("category"); // Get the category
 
         // Populate the fields with current task details
         editTextTitle.setText(title);
         editTextDescription.setText(description);
         tvDeadline.setText(selectedDeadline); // Display existing deadline
+
+        // Set the spinner to the correct category
+        if (selectedCategory != null) {
+            int spinnerPosition = adapter.getPosition(selectedCategory);
+            spinnerCategory.setSelection(spinnerPosition);
+        }
 
         // Set OnClickListener to open the DatePickerDialog
         tvDeadline.setOnClickListener(v -> showDatePickerDialog());
@@ -47,6 +64,7 @@ public class EditTaskActivity extends AppCompatActivity {
         buttonUpdateTask.setOnClickListener(v -> {
             String updatedTitle = editTextTitle.getText().toString();
             String updatedDescription = editTextDescription.getText().toString();
+            String updatedCategory = spinnerCategory.getSelectedItem().toString(); // Get the selected category
 
             // Create an Intent to send updated data back to MainActivity
             Intent resultIntent = new Intent();
@@ -54,6 +72,7 @@ public class EditTaskActivity extends AppCompatActivity {
             resultIntent.putExtra("title", updatedTitle);
             resultIntent.putExtra("description", updatedDescription);
             resultIntent.putExtra("deadline", selectedDeadline); // Pass selected deadline
+            resultIntent.putExtra("category", updatedCategory); // Pass selected category
             setResult(RESULT_OK, resultIntent);
             finish(); // Close the activity
         });

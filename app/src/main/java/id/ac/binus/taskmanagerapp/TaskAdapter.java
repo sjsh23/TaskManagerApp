@@ -20,6 +20,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         this.taskList = taskList;
         this.context = context;
     }
+
+    // Method to update the task list dynamically
     public void updateTaskList(ArrayList<Task> newTaskList) {
         this.taskList = newTaskList;
         notifyDataSetChanged(); // Notify the adapter to refresh the view
@@ -38,6 +40,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.textViewTitle.setText(task.getTitle());
         holder.textViewDeadline.setText(task.getDeadline());
         holder.textViewDescription.setText(task.getDescription());
+        holder.textViewCategory.setText(task.getCategory()); // Bind the category to the view
 
         holder.itemView.setOnClickListener(v -> {
             Intent editIntent = new Intent(context, EditTaskActivity.class);
@@ -45,9 +48,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             editIntent.putExtra("title", task.getTitle());
             editIntent.putExtra("description", task.getDescription());
             editIntent.putExtra("deadline", task.getDeadline());
+            editIntent.putExtra("category", task.getCategory()); // Pass category when editing
             ((Activity) context).startActivityForResult(editIntent, 2); // Request code 2 for editing
         });
-
     }
 
     @Override
@@ -57,13 +60,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewTitle, textViewDeadline, textViewDescription;
+        TextView textViewTitle, textViewDeadline, textViewDescription, textViewCategory; // Add TextView for category
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewDeadline = itemView.findViewById(R.id.textViewDeadline);
             textViewDescription = itemView.findViewById(R.id.textViewDescription);
+            textViewCategory = itemView.findViewById(R.id.textViewCategory); // Initialize category TextView
         }
     }
 }
