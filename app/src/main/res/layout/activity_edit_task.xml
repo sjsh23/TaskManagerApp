@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:hint="Task Title"
         android:textSize="18sp"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:layout_margin="16dp"/>
 
     <!-- Task Description -->
     <EditText
@@ -21,9 +22,18 @@
         android:layout_height="wrap_content"
         android:hint="Task Description"
         android:textSize="18sp"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:layout_margin="16dp"/>
 
-    <!-- Task Deadline (TextView) -->
+
+
+    <!-- Task Category Spinner -->
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="16dp"/>
     <TextView
         android:id="@+id/tvDeadline"
         android:layout_width="match_parent"
@@ -33,14 +43,8 @@
         android:padding="10dp"
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center"
-        android:hint="Task Deadline" />
-
-    <!-- Task Category Spinner -->
-    <Spinner
-        android:id="@+id/spinnerCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp" />
+        android:hint="Task Deadline"
+        android:layout_margin="16dp"/>
 
     <!-- Update Task Button -->
     <Button
@@ -49,6 +53,7 @@
         android:layout_height="wrap_content"
         android:text="Update Task"
         android:textSize="18sp"
-        android:padding="12dp" />
+        android:padding="10dp"
+        android:layout_margin="16dp"/>
 
 </LinearLayout>
